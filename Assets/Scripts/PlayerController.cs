@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 
     // public Rigidbody theRB;
     public float moveSpeed;
+    public float runSpeed;
     public float jumpForce;
     public CharacterController controller;
     public float gravityScale;
