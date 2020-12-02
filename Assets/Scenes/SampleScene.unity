@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: e52e0d8e96998a349a4149132144f76c, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 8f5a8592861f70340b3c03d6b1112c46, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1526980366}
-  m_IndirectSpecularColor: {r: 0.07052855, g: 0.3536621, b: 0.9699103, a: 1}
+  m_IndirectSpecularColor: {r: 0.08276103, g: 0.03620029, b: 0.13373414, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1654,6 +1654,25 @@ Transform:
   m_Father: {fileID: 1685862106}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1069745787 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 602806e6c50fa264eada82982d0c569e,
+    type: 3}
+  m_PrefabInstance: {fileID: 2015165525}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &1069745788
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069745787}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.02
+  m_Center: {x: 0.1590086, y: -0.04288992, z: 0.03511184}
 --- !u!1 &1171871864
 GameObject:
   m_ObjectHideFlags: 0
@@ -2331,7 +2350,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 078017b5f45eacf4f87f836e841537c4,
         type: 3}
       propertyPath: m_Name
-      value: tree
+      value: tree1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 078017b5f45eacf4f87f836e841537c4, type: 3}
@@ -2884,7 +2903,7 @@ SphereCollider:
   m_GameObject: {fileID: 1850543729}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.02
   m_Center: {x: 0.15900859, y: -0.042889923, z: 0.035111845}
@@ -3150,7 +3169,12 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 602806e6c50fa264eada82982d0c569e,
         type: 3}
       propertyPath: m_Name
-      value: brush
+      value: brush1
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 602806e6c50fa264eada82982d0c569e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 602806e6c50fa264eada82982d0c569e, type: 3}
