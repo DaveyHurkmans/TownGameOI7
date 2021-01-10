@@ -17,6 +17,9 @@ public class TwoDimensionalAnimationStateController : MonoBehaviour
     int VelocityZHash;
     int VelocityXHash;
 
+    public bool isGrounded;
+    public bool isChopping;
+
 
     // Start is called before the first frame update
     void Start()
@@ -26,8 +29,10 @@ public class TwoDimensionalAnimationStateController : MonoBehaviour
         VelocityXHash = Animator.StringToHash("Velocity X");
     }
 
+
     // Handles acceleraction and deceleration
-    void changeVelocity(bool forwardPressed, bool leftPressed, bool rightPressed, bool backPressed, bool runPressed, float currentMaxVelocity){
+    void changeVelocity(bool forwardPressed, bool leftPressed, bool rightPressed, bool backPressed, bool runPressed, float currentMaxVelocity)
+    {
 
         if (forwardPressed && velocityZ < currentMaxVelocity)
         {
@@ -47,7 +52,7 @@ public class TwoDimensionalAnimationStateController : MonoBehaviour
 
 
 
-        if (!forwardPressed && velocityZ > 0.0f )
+        if (!forwardPressed && velocityZ > 0.0f)
         {
             velocityZ -= Time.deltaTime * deceleration;
         }
@@ -65,7 +70,8 @@ public class TwoDimensionalAnimationStateController : MonoBehaviour
     }
 
 
-    void lockOrResetVelocity(bool forwardPressed, bool leftPressed, bool rightPressed, bool backPressed, bool runPressed, float currentMaxVelocity){
+    void lockOrResetVelocity(bool forwardPressed, bool leftPressed, bool rightPressed, bool backPressed, bool runPressed, float currentMaxVelocity)
+    {
 
         if (!forwardPressed && velocityZ < 0.0f)
         {
@@ -85,8 +91,8 @@ public class TwoDimensionalAnimationStateController : MonoBehaviour
         if (leftPressed && runPressed && velocityZ > currentMaxVelocity)
         {
             velocityZ = currentMaxVelocity;
-        } 
-        
+        }
+
         else if (leftPressed && velocityZ > currentMaxVelocity)
         {
             velocityZ -= Time.deltaTime * deceleration;
@@ -95,7 +101,7 @@ public class TwoDimensionalAnimationStateController : MonoBehaviour
             {
                 velocityZ = currentMaxVelocity;
             }
-        } 
+        }
 
         else if (leftPressed && velocityZ < currentMaxVelocity && velocityZ > (currentMaxVelocity - 0.05f))
         {
@@ -106,8 +112,8 @@ public class TwoDimensionalAnimationStateController : MonoBehaviour
         if (leftPressed && runPressed && velocityX < -currentMaxVelocity)
         {
             velocityX = -currentMaxVelocity;
-        } 
-        
+        }
+
         else if (leftPressed && velocityX < -currentMaxVelocity)
         {
             velocityX += Time.deltaTime * deceleration;
@@ -116,21 +122,21 @@ public class TwoDimensionalAnimationStateController : MonoBehaviour
             {
                 velocityX = -currentMaxVelocity;
             }
-        } 
+        }
 
         else if (leftPressed && velocityX > -currentMaxVelocity && velocityX < (-currentMaxVelocity + 0.05f))
         {
             velocityX = -currentMaxVelocity;
         }
-        
+
 
 
         // Right locking animations
         if (rightPressed && runPressed && velocityX > currentMaxVelocity)
         {
             velocityX = currentMaxVelocity;
-        } 
-        
+        }
+
         else if (rightPressed && velocityX > currentMaxVelocity)
         {
             velocityX -= Time.deltaTime * deceleration;
@@ -139,7 +145,7 @@ public class TwoDimensionalAnimationStateController : MonoBehaviour
             {
                 velocityX = currentMaxVelocity;
             }
-        } 
+        }
 
         else if (rightPressed && velocityX < currentMaxVelocity && velocityX > (currentMaxVelocity - 0.05f))
         {
@@ -156,7 +162,7 @@ public class TwoDimensionalAnimationStateController : MonoBehaviour
         // XBOX one controller
         // bool forwardPressed = Input.GetKey(KeyCode.??);
         // bool leftPressed = Input.GetKey(KeyCode.??);
-            // bool backPressed = Input.GetKey(KeyCode.??);
+        // bool backPressed = Input.GetKey(KeyCode.??);
         // bool rightPressed = Input.GetKey(KeyCode.??);
         // bool runPressed = Input.GetKey(KeyCode.??);
 
@@ -166,7 +172,8 @@ public class TwoDimensionalAnimationStateController : MonoBehaviour
         bool rightPressed = Input.GetKey(KeyCode.D);
         bool backPressed = Input.GetKey(KeyCode.S);
         bool runPressed = Input.GetKey(KeyCode.LeftShift);
-
+        bool jumpPressed = Input.GetKey(KeyCode.Space);
+        bool chopPressed = Input.GetKey(KeyCode.Mouse0); //Left mouse button
 
         // set current maxVelocity
         float currentMaxVelocity = runPressed ? maxRunVelocity : maxWalkVelocity;
