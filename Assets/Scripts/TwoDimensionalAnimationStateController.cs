@@ -172,8 +172,16 @@ public class TwoDimensionalAnimationStateController : MonoBehaviour
         bool rightPressed = Input.GetKey(KeyCode.D);
         bool backPressed = Input.GetKey(KeyCode.S);
         bool runPressed = Input.GetKey(KeyCode.LeftShift);
-        bool jumpPressed = Input.GetKey(KeyCode.Space);
-        bool chopPressed = Input.GetKey(KeyCode.Mouse0); //Left mouse button
+
+        // if (Input.GetKeyDown(KeyCode.Space))
+        // {
+        //     animator.SetTrigger("Jumping");
+        // }
+
+        // if (Input.GetKeyDown(KeyCode.Mouse0))
+        // {
+        //     animator.SetTrigger("Chopping");
+        // }
 
         // set current maxVelocity
         float currentMaxVelocity = runPressed ? maxRunVelocity : maxWalkVelocity;
