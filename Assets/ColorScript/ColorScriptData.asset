@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 2024720117, guid: 67237bf6c79f14597989bae71dd1f5d4, type: 3}
+  m_Name: ColorScriptData
+  m_EditorClassIdentifier: 
+  useCustomScriptInspector: 1
+  _InspectorData:
+    theme: 0
+    highlightLineEndings: 0
+    informationFoldedOut: 1
+    showAllLineEndings: 0
+    showLineNumbers: 0
+    showTabs: 0
+    fontSizeIndex: 5
+    contentLocked: 0
+  _WindowData:
+    theme: 0
+    highlightLineEndings: 0
+    informationFoldedOut: 1
+    showAllLineEndings: 0
+    showLineNumbers: 0
+    showTabs: 0
+    fontSizeIndex: 5
+    contentLocked: 0
