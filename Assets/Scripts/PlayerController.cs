@@ -26,20 +26,17 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // theRB.velocity = new Vector3(Input.GetAxis("Horizontal") * moveSpeed, theRB.velocity.y, Input.GetAxis("Vertical") * moveSpeed );
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
 
-        // if(Input.GetButtonDown("Jump")){
-        //     theRB.velocity = new Vector3(theRB.velocity.x, jumpForce, theRB.velocity.z);
-        // }
-
-        // moveDirection = new Vector3(Input.GetAxis("Horizontal") * moveSpeed, moveDirection.y, Input.GetAxis("Vertical") * moveSpeed);
+        
         float yStore = moveDirection.y;
         moveDirection = (transform.forward * Input.GetAxis("Vertical") ) + (transform.right * Input.GetAxis("Horizontal") );
         moveDirection = moveDirection.normalized * moveSpeed;
         moveDirection.y = yStore;
 
         if(controller.isGrounded) {
-            moveDirection.y = 0f;
+            moveDirection.y = -0.5f;
             if(Input.GetButtonDown("Jump")){
                 moveDirection.y = jumpForce;
             }
