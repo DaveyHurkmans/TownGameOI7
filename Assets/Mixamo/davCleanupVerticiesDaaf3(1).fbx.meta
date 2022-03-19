@@ -1,11 +1,8 @@
 fileFormatVersion: 2
-guid: 2040bf720e6acf240b9759ce6e7c1e71
+guid: 6a3a03c605e24d342b2a9da2b7d0225b
 ModelImporter:
   serializedVersion: 19300
-  internalIDToNameTable:
-  - first:
-      74: -203655887218126122
-    second: mixamo.com
+  internalIDToNameTable: []
   externalObjects: {}
   materials:
     materialImportMode: 1
