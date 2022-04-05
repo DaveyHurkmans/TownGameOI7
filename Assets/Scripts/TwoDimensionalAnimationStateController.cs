@@ -26,7 +26,7 @@ public class TwoDimensionalAnimationStateController : MonoBehaviour
         VelocityXHash = Animator.StringToHash("Velocity X");
     }
 
-    // Handles acceleraction and deceleration
+    // Handles acceleration and deceleration
     void changeVelocity(bool forwardPressed, bool leftPressed, bool rightPressed, bool backPressed, bool runPressed, float currentMaxVelocity){
 
         if (forwardPressed && velocityZ < currentMaxVelocity)
@@ -166,6 +166,7 @@ public class TwoDimensionalAnimationStateController : MonoBehaviour
         bool rightPressed = Input.GetKey(KeyCode.D);
         bool backPressed = Input.GetKey(KeyCode.S);
         bool runPressed = Input.GetKey(KeyCode.LeftShift);
+        // Input.GetButtonDown("Jump")
 
 
         // set current maxVelocity
