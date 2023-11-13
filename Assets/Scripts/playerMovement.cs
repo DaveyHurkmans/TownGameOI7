@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace OI7_Unity // Replace '-' with '_' or use another valid character
+namespace TownGameOI7 // Replace '-' with '_' or use another valid character
 {
     public class PlayerMovement : MonoBehaviour
     {
@@ -23,6 +23,7 @@ namespace OI7_Unity // Replace '-' with '_' or use another valid character
         [SerializeField] private float gravity;
         [SerializeField] private float jumpHeight;
 
+        [SerializeField] private float acceleration;
         private CharacterController controller;
 
         private void Start()

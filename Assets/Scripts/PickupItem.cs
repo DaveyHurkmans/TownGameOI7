@@ -1,12 +1,12 @@
-using UnityEngine;
+using UnityEngine; // Add this line
 
 public class PickupItem : MonoBehaviour
 {
-    public Item item;
+    public MayoralNotes mayoralNotes;
 
     public void Pickup()
     {
-        InventoryManager.Instance.AddItem(item);
+        InventoryManager.Instance.AddItem(mayoralNotes);
         Destroy(gameObject);
     }
 }
