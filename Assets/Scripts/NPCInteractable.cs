@@ -15,4 +15,5 @@ public class NPCInteractable : MonoBehaviour
         ChatBubble.Create(transform, new Vector3(-0.3f, 4.7f, 0f), message);
         animator.SetTrigger("Talk");
     }
+    
 }
