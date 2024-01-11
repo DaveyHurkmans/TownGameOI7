@@ -2,27 +2,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInteract : MonoBehaviour
+namespace TownGameOI7
 {
-    private void Update()
+    public class PlayerInteract : MonoBehaviour
     {
-        if (Input.GetButtonDown("Submit"))
-        {
-            float interactRange = 2f;
-            Collider[] colliderArray = Physics.OverlapSphere(transform.position, interactRange);
-            
-            foreach (Collider collider in colliderArray)
-            {
-                if (collider.TryGetComponent(out NPCInteractable npcInteractable))
-                {
-                    npcInteractable.Interact();
-                }
+        private bool isInteracting = false;
 
-                if (collider.TryGetComponent(out PickupItem pickupItem))
+        private void Update()
+        {
+            if (!isInteracting && Input.GetButtonDown("Submit"))
+            {
+                StartCoroutine(Interact());
+            }
+        }
+
+        IEnumerator Interact()
+        {
+            isInteracting = true;
+
+            // Add logic to check if a dialogue is active and handle input accordingly
+            if (DialogueManager.isActive)
+            {
+                // If dialogue is active, move to the next message with A button on Xbox controller or Left mouse button on PC
+                if (Input.GetButtonDown("NextMessage"))
                 {
-                    pickupItem.Pickup();
+                    FindObjectOfType<DialogueManager>().NextMessage();
+                }
+                // If B button on Xbox controller or Right mouse button on PC is pressed, go back one message
+                else if (Input.GetButtonDown("PreviousMessage"))
+                {
+                    FindObjectOfType<DialogueManager>().PreviousMessage();
                 }
             }
+
+
+            // Allow time between button presses
+            yield return new WaitForSeconds(0.2f);
+
+            isInteracting = false;
         }
     }
 }

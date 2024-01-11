@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace TownGameOI7 // Replace '-' with '_' or use another valid character
+namespace TownGameOI7
 {
     public class PlayerMovement : MonoBehaviour
     {
@@ -54,7 +53,7 @@ namespace TownGameOI7 // Replace '-' with '_' or use another valid character
             if (moveDirection != Vector3.zero)
             {
                 Quaternion toRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+                transform.rotation = toRotation; // Directly set the rotation
             }
 
             float targetSpeed = isGrounded ? (Input.GetKey(KeyCode.LeftShift) ? runSpeed : walkSpeed) : 0f;
@@ -64,12 +63,9 @@ namespace TownGameOI7 // Replace '-' with '_' or use another valid character
 
             moveDirection *= speed;
 
-            if (isGrounded)
+            if (isGrounded && Input.GetButtonDown("Jump"))
             {
-                if (Input.GetButtonDown("Jump"))
-                {
-                    Jump();
-                }
+                Jump();
             }
 
             controller.Move(moveDirection * Time.deltaTime);

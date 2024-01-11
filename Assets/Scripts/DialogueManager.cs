@@ -1,19 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static LeanTween;
 
 public class DialogueManager : MonoBehaviour
 {
-    public Image actorImage;
-    public Text actorName;
+    public GameObject dialogueBox;
+    public Image avatarImage;
+    public Text actorNameText;
     public Text messageText;
-    public RectTransform backgroundBox;
-    Message[] currentMessages; // Corrected variable name and data type
+
+    Message[] currentMessages;
     Actor[] currentActors;
     int activeMessage = 0;
 
     public static bool isActive = false;
+    public static bool isInDialogue = false; // New state to check if in dialogue mode
+
+    void Start()
+    {
+        dialogueBox.SetActive(false);
+        isInDialogue = false;
+    }
 
     public void OpenDialogue(Message[] messages, Actor[] actors)
     {
@@ -21,112 +28,91 @@ public class DialogueManager : MonoBehaviour
         currentActors = actors;
         activeMessage = 0;
         isActive = true;
+        isInDialogue = true; // Set to true when starting dialogue
         Debug.Log("Started conversation! Loaded messages: " + messages.Length);
+        DisplayMessage();
     }
 
-
     void DisplayMessage()
-{
-    Message messageToDisplay = currentMessages[activeMessage];
-    messageText.text = messageToDisplay.message;  // Corrected variable name
-    Actor actorToDisplay = currentActors[messageToDisplay.actorId];
-    actorName.text = actorToDisplay.name;
-    actorImage.sprite = actorToDisplay.sprite;
-}
+    {
+        if (activeMessage < currentMessages.Length)
+        {
+            Message messageToDisplay = currentMessages[activeMessage];
+            messageText.text = messageToDisplay.message;
 
-    public void NextMessage() {
-        activeMessage++;
-        if (activeMessage < currentMessages.Length) {
+            Actor actorToDisplay = currentActors[messageToDisplay.actorId];
+            actorNameText.text = actorToDisplay.name;
+            avatarImage.sprite = actorToDisplay.sprite;
+
+            dialogueBox.SetActive(true);
+
+            // Animate text color using LeanTween
+            AnimateTextColor();
+        }
+        else
+        {
+            EndDialogue();
+        }
+    }
+
+    public void PreviousMessage()
+    {
+        activeMessage--;
+        if (activeMessage >= 0)
+        {
             DisplayMessage();
-        } else {
-            Debug.Log("Conversation eneded!");
+        }
+        else
+        {
+            Debug.Log("Already at the first message.");
+        }
+    }
+
+    public void NextMessage()
+    {
+        activeMessage++;
+        if (activeMessage < currentMessages.Length)
+        {
+            DisplayMessage();
+        }
+        else
+        {
+            Debug.Log("Conversation ended!");
             isActive = false;
         }
     }
 
 
-
-
-
-
-    // Start is called before the first frame update
-    void Start()
+    void EndDialogue()
     {
+        Debug.Log("Conversation ended!");
+        isActive = false;
+        isInDialogue = false;
 
+        // Deactivate the dialogue box when the conversation ends
+        dialogueBox.SetActive(false);
+
+        // Allow character movement after dialogue ends
+        FindObjectOfType<Character>().ToggleMovement(true);
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isActive == true ) {
+        if (isActive && Input.GetKeyDown(KeyCode.Space))
+        {
             NextMessage();
         }
     }
+
+    // Additional Methods:
+
+    void AnimateTextColor()
+    {
+        // Animate text color using LeanTween
+        textColor(messageText.rectTransform, Color.clear, 0);
+        textColor(messageText.rectTransform, Color.white, 0.5f);
+    }
+
+
 }
-
-
-
-
-
-// using System.Diagnostics;
-// using System.Collections.Specialized;
-// using System.Numerics;
-// using unityEngine;
-// using UnityEngine.UI;
-
-// public class DialogueManager: MonoBehaviour 
-// {
-// public Image actorImage;
-// public Text actorName;
-// public Text messageText;
-// public RectTransform backgroundBox;
-// Message[] currentMessages;
-// Actor[] currentActors;
-// int activeMessage = 0;
-
-// public static bool isActive = false;
-// public void OpenDialogue (Message[] messages, Actor[] actors) {
-//     currentMessages = messages;
-//     currentActors = actors;
-//     activeMessage = 0;
-//     isActive= true;
-//     Debug.Log("Started conversation! Loaded messages:" + messages.Length); 
-//     DisplayMessage(); 
-//     backgroundBox.LeanScale()
-// }
-
-// void DisplayMessage() {
-//     Message messageToDisplay = currentMessages [activeMessage]; 
-//     messageText.text = messageToDisplay.message;
-
-//     Actor actorToDisplay = currentActors [messageToDisplay.actorId]; 
-//     actorName.text = actorToDisplay.name;
-//     actorImage.sprite = actorToDisplay.sprite;
-// }
-
-
-
-
-// public void NextMessage() {
-//     activeMessage++;
-//     if (activeMessage < currentMessages.Length) {
-//         DisplayMessage();
-//     } else {
-//         Debug.Log("Conversation done!");
-//         backgroundBox.LeanScale(Vector3.zero, 0.5f).setEaseInOutExpo();
-//     }
-// }
-
-
-// void Start()
-// {
-//     backgroundBox.transform.localScale = Vector3.zero;
-// } 
-
-
-// void Update() 
-// {
-//     if (Input.GetKeyDown(KeyCode. Space) && isActive == true) {
-//         NextMessage();
-//     }
-// }}
