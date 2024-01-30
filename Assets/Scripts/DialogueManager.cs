@@ -8,7 +8,6 @@ public class DialogueManager : MonoBehaviour
     public Image avatarImage;
     public Text actorNameText;
     public Text messageText;
-
     Message[] currentMessages;
     Actor[] currentActors;
     int activeMessage = 0;
@@ -51,7 +50,9 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
+            Debug.Log("einde gesprek a niffau1");
             EndDialogue();
+            Debug.Log("einde gesprek a niffau2");
         }
     }
 
@@ -79,12 +80,14 @@ public class DialogueManager : MonoBehaviour
         {
             Debug.Log("Conversation ended!");
             isActive = false;
+            EndDialogue();
         }
     }
 
 
     void EndDialogue()
     {
+        Debug.Log("einde gesprek a niffau3");
         Debug.Log("Conversation ended!");
         isActive = false;
         isInDialogue = false;
@@ -94,6 +97,7 @@ public class DialogueManager : MonoBehaviour
 
         // Allow character movement after dialogue ends
         FindObjectOfType<Character>().ToggleMovement(true);
+        Debug.Log("einde gesprek a niffau4");
     }
 
 
