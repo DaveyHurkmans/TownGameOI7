@@ -13,7 +13,7 @@ public class DialogueManager : MonoBehaviour
     int activeMessage = 0;
 
     public static bool isActive = false;
-    public static bool isInDialogue = false; // New state to check if in dialogue mode
+    public static bool isInDialogue = false; 
 
     void Start()
     {
@@ -27,8 +27,7 @@ public class DialogueManager : MonoBehaviour
         currentActors = actors;
         activeMessage = 0;
         isActive = true;
-        isInDialogue = true; // Set to true when starting dialogue
-        Debug.Log("Started conversation! Loaded messages: " + messages.Length);
+        isInDialogue = true; 
         DisplayMessage();
     }
 
@@ -44,15 +43,11 @@ public class DialogueManager : MonoBehaviour
             avatarImage.sprite = actorToDisplay.sprite;
 
             dialogueBox.SetActive(true);
-
-            // Animate text color using LeanTween
             AnimateTextColor();
         }
         else
         {
-            Debug.Log("einde gesprek a niffau1");
             EndDialogue();
-            Debug.Log("einde gesprek a niffau2");
         }
     }
 
@@ -78,28 +73,17 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Conversation ended!");
-            isActive = false;
             EndDialogue();
         }
     }
 
-
     void EndDialogue()
     {
-        Debug.Log("einde gesprek a niffau3");
-        Debug.Log("Conversation ended!");
         isActive = false;
         isInDialogue = false;
-
-        // Deactivate the dialogue box when the conversation ends
         dialogueBox.SetActive(false);
-
-        // Allow character movement after dialogue ends
-        FindObjectOfType<Character>().ToggleMovement(true);
-        Debug.Log("einde gesprek a niffau4");
+        FindObjectOfType<DialogueTrigger>().EndDialogue(); // Notify DialogueTrigger that dialogue has ended
     }
-
 
     void Update()
     {
@@ -109,14 +93,9 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    // Additional Methods:
-
     void AnimateTextColor()
     {
-        // Animate text color using LeanTween
         textColor(messageText.rectTransform, Color.clear, 0);
         textColor(messageText.rectTransform, Color.white, 0.5f);
     }
-
-
 }

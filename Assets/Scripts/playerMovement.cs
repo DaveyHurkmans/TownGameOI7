@@ -4,10 +4,7 @@ namespace TownGameOI7
 {
     public class PlayerMovement : MonoBehaviour
     {
-        // Animator
         public Animator animator;
-
-        // Variables
         [SerializeField] private float moveSpeed;
         [SerializeField] private float walkSpeed;
         [SerializeField] private float runSpeed;
@@ -15,13 +12,11 @@ namespace TownGameOI7
 
         private Vector3 moveDirection;
         private Vector3 velocity;
-
         [SerializeField] private bool isGrounded;
         [SerializeField] private float groundCheckDistance;
         [SerializeField] private LayerMask groundMask;
         [SerializeField] private float gravity;
         [SerializeField] private float jumpHeight;
-
         [SerializeField] private float acceleration;
         private CharacterController controller;
 
@@ -53,7 +48,7 @@ namespace TownGameOI7
             if (moveDirection != Vector3.zero)
             {
                 Quaternion toRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
-                transform.rotation = toRotation; // Directly set the rotation
+                transform.rotation = toRotation;
             }
 
             float targetSpeed = isGrounded ? (Input.GetKey(KeyCode.LeftShift) ? runSpeed : walkSpeed) : 0f;
@@ -86,9 +81,13 @@ namespace TownGameOI7
         {
             if (isGrounded)
             {
-                animator.SetTrigger("Jumping");
                 velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
             }
+        }
+
+        public void ToggleMovement(bool enableMovement)
+        {
+            enabled = enableMovement;
         }
     }
 }

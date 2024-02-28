@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
@@ -11,6 +9,7 @@ public class DialogueTrigger : MonoBehaviour
     private float interactionRange = 2f;
 
     private bool isInRange = false;
+    private bool isDialogueStarted = false;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -30,20 +29,22 @@ public class DialogueTrigger : MonoBehaviour
 
     private void Update()
     {
-        // Optionally add any additional update logic here.
-        if (isInRange && Input.GetButtonDown("Submit"))
+        if (isInRange && Input.GetButtonDown("Submit") && !isDialogueStarted)
         {
+            isDialogueStarted = true;
             StartDialogue();
         }
     }
 
     public void StartDialogue()
-        {
-            FindObjectOfType<DialogueManager>().OpenDialogue(messages, actors);
-            // Disable character movement during dialogue
-            FindObjectOfType<Character>().ToggleMovement(false);
-        }
-    
+    {
+        FindObjectOfType<DialogueManager>().OpenDialogue(messages, actors);
+    }
+
+    public void EndDialogue()
+    {
+        isDialogueStarted = false;
+    }
 
     public bool IsInRange(Vector3 playerPosition)
     {
